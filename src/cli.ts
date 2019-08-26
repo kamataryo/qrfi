@@ -20,13 +20,14 @@ program
   )
   .option('-p, --password <value>', 'Optional.')
   .option(
-    '-h, --hidden',
+    '-H, --hidden',
     'Optional. The SSID is hidden or not. Default value is `false`.'
   )
 
 program.on('--help', () => {
   process.stdout.write(
     `
+
       Examples:
         $ qrfi <yourSSID> -p <your password>
         $ echo yourSSID | qrfi -p <your password>
