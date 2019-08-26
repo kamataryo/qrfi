@@ -58,7 +58,7 @@ const onEnd = () => {
     process.exit(1)
   }
   qrfi
-    .toQR()
+    .toQR({ format: 'ascii' })
     .then(qrcode => {
       process.stdout.write(qrcode)
       process.exit(0)

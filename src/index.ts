@@ -77,10 +77,9 @@ export default class Qrfi {
     )};P:${Qrfi.escape(this.password)};${this.hidden ? 'true' : ''};`
 
   toQR = (option?: QROption): Promise<string> => {
-    const qrString = this.toString()
     const { format } = { ...Qrfi.defaultQROption, ...option }
-
     return new Promise((resolve, reject) => {
+      const qrString = this.toString()
       if (format === 'ascii') {
         qrcode.generate(qrString, resolve)
       } else {

@@ -60,3 +60,14 @@ test('qr output with terminal', async t => {
   }).toQR({ format: 'ascii' })
   t.snapshot(qrAscii)
 })
+
+test('qr output fails', async t => {
+  await t.throwsAsync(() =>
+    new Qrfi({
+      authenticationType: 'WPA',
+      networkSSID: 'h\\e;l,l:o',
+      password: 'wifi'
+      // @ts-ignore
+    }).toQR({ format: 'unknown format' })
+  )
+})
