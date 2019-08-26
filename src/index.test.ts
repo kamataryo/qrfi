@@ -11,6 +11,11 @@ test('constructor call success', t => {
   )
 })
 
+test('constructor call fails with invalid authenticationType', t => {
+  // @ts-ignore
+  t.throws(() => new Qrfi({ authenticationType: 'foobar' }))
+})
+
 test('constructor call fails without ssid', t => {
   // @ts-ignore
   t.throws(() => new Qrfi({}))

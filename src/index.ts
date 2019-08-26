@@ -1,13 +1,13 @@
 import * as qrcode from 'qrcode-terminal'
 
-type WiFiOption = {
+export type WiFiOption = {
   authenticationType?: 'WEP' | 'WPA' | 'nopass' | ''
   networkSSID: string
   password?: string
   hidden?: boolean
 }
 
-type QROption = {
+export type QROption = {
   format: 'ascii'
 }
 
@@ -26,6 +26,7 @@ export default class Qrfi {
     hidden: false
   }
   static defaultQROption: QROption = { format: 'ascii' }
+
   static escape = (str: string): string =>
     str
       .split('')
@@ -47,6 +48,17 @@ export default class Qrfi {
       throw new Error('no SSID specified.')
     }
 
+    if (
+      authenticationType &&
+      (authenticationType !== 'WEP' &&
+        authenticationType !== 'WPA' &&
+        authenticationType !== 'nopass')
+    ) {
+      throw new Error(
+        `Invalid authentication type, ${authenticationType}. Authentication type should be one of WEP, WPA and nopass, or empty.`
+      )
+    }
+
     if (authenticationType && authenticationType !== 'nopass' && !password) {
       throw new Error(
         `no password specified against authentication type ${authenticationType}.`
@@ -64,7 +76,7 @@ export default class Qrfi {
       this.networkSSID
     )};P:${Qrfi.escape(this.password)};${this.hidden ? 'true' : ''};`
 
-  toQR = (option?: QROption) => {
+  toQR = (option?: QROption): Promise<string> => {
     const qrString = this.toString()
     const { format } = { ...Qrfi.defaultQROption, ...option }
 
