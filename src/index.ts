@@ -48,6 +48,10 @@ export default class Qrfi {
       throw new Error('no SSID specified.')
     }
 
+    if (networkSSID.length > 32) {
+      throw new Error('Too long SSID.')
+    }
+
     if (
       authenticationType &&
       (authenticationType !== 'WEP' &&
@@ -63,6 +67,14 @@ export default class Qrfi {
       throw new Error(
         `no password specified against authentication type ${authenticationType}.`
       )
+    }
+
+    if (authenticationType === 'WEP' && password.length > 16) {
+      throw new Error('Maximum length of password for WEP is 16.')
+    }
+
+    if (authenticationType === 'WPA' && password.length > 63) {
+      throw new Error('Maximum length of password for WPA-PSK/WPA2-PSK is 63.')
     }
 
     this.authenticationType = authenticationType

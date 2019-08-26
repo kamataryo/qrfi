@@ -16,17 +16,47 @@ test('constructor call fails with invalid authenticationType', t => {
   t.throws(() => new Qrfi({ authenticationType: 'foobar' }))
 })
 
-test('constructor call fails without ssid', t => {
+test('constructor call fails without empty SSID', t => {
   // @ts-ignore
   t.throws(() => new Qrfi({}))
 })
 
-test('constructor call fails without password', t => {
+test('constructor call fails without too long SSID', t => {
+  // @ts-ignore
+  t.throws(
+    () => new Qrfi({ networkSSID: '012345678901234567890123456789abcde' })
+  )
+})
+
+test('constructor call fails with WEP without password', t => {
   t.throws(
     () =>
       new Qrfi({
         networkSSID: 'hello',
         authenticationType: 'WEP'
+      })
+  )
+})
+
+test('constructor call fails with WEP and too loing key length', t => {
+  t.throws(
+    () =>
+      new Qrfi({
+        networkSSID: 'hello',
+        authenticationType: 'WEP',
+        password: '01234567890123456789abc' // should be < 17
+      })
+  )
+})
+
+test('constructor call fails with WPA and too loing key length', t => {
+  t.throws(
+    () =>
+      new Qrfi({
+        networkSSID: 'hello',
+        authenticationType: 'WPA',
+        password:
+          '012345678901234567890123456789012345678901234567890123456789abcdefg' // should be < 64
       })
   )
 })
