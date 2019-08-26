@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/kamataryo/qrfi.svg?branch=master)](https://travis-ci.org/kamataryo/qrfi)
 [![npm version](https://badge.fury.io/js/qrfi.svg)](https://badge.fury.io/js/qrfi)
 
-CLI Wifi QRCode Generator.
+`qrfi` is a CLI Wifi QRCode Generator.
+
+![](./social.png)
 
 ## Prerequisites
 
@@ -33,13 +35,15 @@ $ npx qrfi your-ssid -p your-password
 $ echo 'your-ssid' | npx qrfi -p your-password
 ```
 
+![screenshot](screenshot.png)
+
 ### options
 
 ```shell
 $ qrfi -h
-Usage: cli.ts [ssid] [options]
+Usage: qrfi [ssid] [options]
 
-CLI Wifi QRCode Generator.
+A CLI Wifi QRCode Generator.
 
 Options:
   -V, --version                      output the version number
