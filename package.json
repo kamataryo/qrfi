@@ -29,7 +29,7 @@
     "commander": "^3.0.0",
     "qrcode-terminal": "^0.12.0"
   },
-  "description": "A CLI Wifi QRCode Generator.",
+  "description": "A CLI Wi-Fi QR Code Generator.",
   "repository": "git@github.com:kamataryo/qrfi.git",
   "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
   "private": false

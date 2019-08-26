@@ -30,7 +30,7 @@ program.on('--help', () => {
 
       Examples:
         $ qrfi <yourSSID> -p <your password>
-        $ echo yourSSID | qrfi -p <your password>
+        $ echo <yourSSID> | qrfi -p <your password>
   `[outdent as string]
   )
 })
@@ -57,7 +57,6 @@ const onEnd = () => {
     process.stdout.write(e.message)
     process.exit(1)
   }
-
   qrfi
     .toQR()
     .then(qrcode => {

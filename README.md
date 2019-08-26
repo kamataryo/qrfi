@@ -3,13 +3,20 @@
 [![Build Status](https://travis-ci.org/kamataryo/qrfi.svg?branch=master)](https://travis-ci.org/kamataryo/qrfi)
 [![npm version](https://badge.fury.io/js/qrfi.svg)](https://badge.fury.io/js/qrfi)
 
-`qrfi` is a CLI Wifi QRCode Generator.
+`qrfi` is a CLI Wi-Fi QR Code Generator. You can scan and configure Wi-Fi connection with displayed QR Code.
 
 ![](./social.png)
 
 ## Prerequisites
 
+### CLI
+
 Node.js > 8
+
+### Scanning device
+
+- Android
+- iOS 11+
 
 ## install
 
@@ -43,7 +50,7 @@ $ echo 'your-ssid' | npx qrfi -p your-password
 $ qrfi -h
 Usage: qrfi [ssid] [options]
 
-A CLI Wifi QRCode Generator.
+A CLI Wi-Fi QR Code Generator.
 
 Options:
   -V, --version                      output the version number
