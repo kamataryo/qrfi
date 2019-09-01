@@ -1,4 +1,7 @@
 import * as qrcode from 'qrcode-terminal'
+import * as qrImage from 'qr-image'
+import * as stream from 'stream'
+import * as streamToPromise from 'stream-to-promise'
 
 export type WiFiOption = {
   authenticationType?: 'WEP' | 'WPA' | 'nopass' | ''
@@ -8,7 +11,7 @@ export type WiFiOption = {
 }
 
 export type QROption = {
-  format: 'ascii'
+  format: 'ascii' | 'svg' | 'png'
 }
 
 const replaceMap = {
@@ -88,12 +91,14 @@ export default class Qrfi {
       this.networkSSID
     )};P:${Qrfi.escape(this.password)};${this.hidden ? 'true' : ''};`
 
-  toQR = (option?: QROption): Promise<string> => {
+  toQR = (option?: QROption): Promise<string | Buffer> => {
     const { format } = { ...Qrfi.defaultQROption, ...option }
     return new Promise((resolve, reject) => {
       const qrString = this.toString()
       if (format === 'ascii') {
         qrcode.generate(qrString, resolve)
+      } else if (format === 'svg' || format === 'png') {
+        resolve(qrImage.imageSync(qrString, { type: format }))
       } else {
         reject(new Error(`Invalid format ${format} specified.`))
       }

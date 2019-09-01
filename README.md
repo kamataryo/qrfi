@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/kamataryo/qrfi.svg?branch=master)](https://travis-ci.org/kamataryo/qrfi)
 [![npm version](https://badge.fury.io/js/qrfi.svg)](https://badge.fury.io/js/qrfi)
 
-`qrfi` is a CLI Wi-Fi QR Code Generator. You can scan and configure Wi-Fi connection with displayed QR Code.
+`qrfi` is a CLI Wi-Fi QR Code Generator. You can scan and configure Wi-Fi connection with QR Code.
 
 ![](./social.png)
 
@@ -57,11 +57,13 @@ Options:
   -t, --authentication-type <value>  Optional. One of WEP, WPA, nopass. Default value is WPA.
   -p, --password <value>             Optional.
   -H, --hidden                       Optional. The SSID is hidden or not. Default value is `false`.
+  -f, --format <value>               Optional. ascii as default, png or svg.
   -h, --help                         output usage information
 
 Examples:
   $ qrfi <yourSSID> -p <your password>
-  $ echo yourSSID | qrfi -p <your password>
+  $ qrfi <yourSSID> -p <your password> -f png > qr.png
+  $ echo <yourSSID> | qrfi -p <your password>
 ```
 
 ## development

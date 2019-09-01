@@ -23,6 +23,7 @@ program
     '-H, --hidden',
     'Optional. The SSID is hidden or not. Default value is `false`.'
   )
+  .option('-f, --format <value>', 'Optional. ascii as default, png or svg.')
 
 program.on('--help', () => {
   process.stdout.write(
@@ -30,6 +31,7 @@ program.on('--help', () => {
 
       Examples:
         $ qrfi <yourSSID> -p <your password>
+        $ qrfi <yourSSID> -p <your password> -f png > qr.png
         $ echo <yourSSID> | qrfi -p <your password>
   `[outdent as string]
   )
@@ -43,13 +45,14 @@ const args = [...program.args]
 const authenticationType = program.authenticationType || 'WPA'
 const password = program.password || ''
 const hidden = !!program.hidden
+const format = program.format || 'ascii'
 
 // stdin
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
-let data = ''
+let stdinData = ''
 const onEnd = () => {
-  const networkSSID = args[0] || data
+  const networkSSID = args[0] || stdinData
   let qrfi: Qrfi
   try {
     qrfi = new Qrfi({ authenticationType, networkSSID, password, hidden })
@@ -57,8 +60,9 @@ const onEnd = () => {
     process.stdout.write(e.message)
     process.exit(1)
   }
+
   qrfi
-    .toQR({ format: 'ascii' })
+    .toQR({ format })
     .then(qrcode => {
       process.stdout.write(qrcode)
       process.exit(0)
@@ -72,6 +76,6 @@ const onEnd = () => {
 if (isatty(0)) {
   onEnd()
 } else {
-  process.stdin.on('data', chunk => (data += chunk))
+  process.stdin.on('data', chunk => (stdinData += chunk))
   process.stdin.on('end', onEnd)
 }

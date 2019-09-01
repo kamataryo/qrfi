@@ -91,6 +91,24 @@ test('qr output with terminal', async t => {
   t.snapshot(qrAscii)
 })
 
+test('qr output with png', async t => {
+  const qrAscii = await new Qrfi({
+    authenticationType: 'WPA',
+    networkSSID: 'h\\e;l,l:o',
+    password: 'wifi'
+  }).toQR({ format: 'png' })
+  t.snapshot(qrAscii)
+})
+
+test('qr output with svg', async t => {
+  const qrAscii = await new Qrfi({
+    authenticationType: 'WPA',
+    networkSSID: 'h\\e;l,l:o',
+    password: 'wifi'
+  }).toQR({ format: 'svg' })
+  t.snapshot(qrAscii)
+})
+
 test('qr output fails', async t => {
   await t.throwsAsync(() =>
     new Qrfi({

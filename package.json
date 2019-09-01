@@ -5,6 +5,7 @@
   "bin": "dist/cli.js",
   "license": "MIT",
   "scripts": {
+    "bin": "ts-node ./src/cli.ts",
     "build": "rimraf ./dist && tsc && chmod +x ./dist/cli.js",
     "test": "ava"
   },
@@ -27,7 +28,9 @@
   "dependencies": {
     "@kamataryo/outdent": "^1.0.4",
     "commander": "^3.0.0",
-    "qrcode-terminal": "^0.12.0"
+    "qr-image": "^3.2.0",
+    "qrcode-terminal": "^0.12.0",
+    "stream-to-promise": "^2.2.0"
   },
   "description": "A CLI Wi-Fi QR Code Generator.",
   "repository": "git@github.com:kamataryo/qrfi.git",
