@@ -30,9 +30,9 @@ program.on('--help', () => {
     `
 
       Examples:
-        $ qrfi <yourSSID> -p <your password>
-        $ qrfi <yourSSID> -p <your password> -f png > qr.png
-        $ echo <yourSSID> | qrfi -p <your password>
+        $ qrfi YOUR-SSID -p YOUR-PASSWORD
+        $ qrfi YOUR-SSID -p YOUR-PASSWORD -f png > qr.png
+        $ echo YOUR-SSID | qrfi -p YOUR-PASSWORD
   `[outdent as string]
   )
 })

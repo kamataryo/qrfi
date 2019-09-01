@@ -29,17 +29,19 @@ NOTE: Also you can use qrfi with `npx`command.
 ## Usage
 
 ```shell
-$ qrfi your-ssid -p your-password
+$ qrfi YOUR-SSID -p YOUR-PASSWORD
 # or you can drain SSID from stdin
-$ echo 'your-ssid' | qrfi -p your-password
+$ echo YOUR-SSID | qrfi -p YOUR-PASSWORD
+# export png as stdout
+$ qrfi YOUR-SSID -p YOUR-PASSWORD --format png > qr.png
 ```
 
 With `npx`:
 
 ```shell
-$ npx qrfi your-ssid -p your-password
+$ npx qrfi YOUR-SSID -p YOUR-PASSWORD
 # or you can drain SSID from stdin
-$ echo 'your-ssid' | npx qrfi -p your-password
+$ echo YOUR-SSID | npx qrfi -p YOUR-PASSWORD
 ```
 
 ![screenshot](screenshot.png)
@@ -61,9 +63,9 @@ Options:
   -h, --help                         output usage information
 
 Examples:
-  $ qrfi <yourSSID> -p <your password>
-  $ qrfi <yourSSID> -p <your password> -f png > qr.png
-  $ echo <yourSSID> | qrfi -p <your password>
+  $ qrfi YOUR-SSID -p YOUR-PASSWORD
+  $ qrfi YOUR-SSID -p YOUR-PASSWORD -f png > qr.png
+  $ echo YOUR-SSID | qrfi -p YOUR-PASSWORD
 ```
 
 ## development
