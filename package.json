@@ -33,6 +33,11 @@
     "stream-to-promise": "^2.2.0"
   },
   "description": "A CLI Wi-Fi QR Code Generator.",
+  "keywords": [
+    "QR",
+    "Wi-Fi",
+    "CLI"
+  ],
   "repository": "git@github.com:kamataryo/qrfi.git",
   "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
   "private": false
